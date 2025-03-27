@@ -1,0 +1,6 @@
+framework module RoutableLogger {
+  umbrella header "RoutableLogger-umbrella.h"
+
+  export *
+  module * { export * }
+}

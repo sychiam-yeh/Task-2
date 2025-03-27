@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="taskDateCell" id="gTV-IL-0wX" customClass="TaskDateCollectionViewCell" customModule="Task2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="403" height="196"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="403" height="196"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uLa-Rj-wfx">
+                        <rect key="frame" x="0.0" y="0.0" width="403" height="196"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lW-TU-Y8G">
+                                <rect key="frame" x="10" y="10" width="92.333333333333329" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xYi-Hn-Awp">
+                                <rect key="frame" x="344" y="3.6666666666666679" width="51" height="31.000000000000004"/>
+                                <connections>
+                                    <action selector="isSetReminder:" destination="gTV-IL-0wX" eventType="valueChanged" id="Q1D-JW-Wfp"/>
+                                </connections>
+                            </switch>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="63I-f9-ImO">
+                                <rect key="frame" x="10" y="43" width="383" height="110"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yOQ-ic-Alv">
+                                        <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="G96-N1-J4v"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iUe-ap-ZsA">
+                                        <rect key="frame" x="0.0" y="60" width="383" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="iUe-ap-ZsA" firstAttribute="height" secondItem="yOQ-ic-Alv" secondAttribute="height" id="NcL-Px-gyR"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="6lW-TU-Y8G" firstAttribute="leading" secondItem="uLa-Rj-wfx" secondAttribute="leading" constant="10" id="7Db-kP-hWm"/>
+                            <constraint firstItem="6lW-TU-Y8G" firstAttribute="centerY" secondItem="xYi-Hn-Awp" secondAttribute="centerY" id="82e-tm-bzi"/>
+                            <constraint firstItem="6lW-TU-Y8G" firstAttribute="top" secondItem="uLa-Rj-wfx" secondAttribute="top" constant="10" id="PTv-ce-tvf"/>
+                            <constraint firstItem="63I-f9-ImO" firstAttribute="leading" secondItem="6lW-TU-Y8G" secondAttribute="leading" id="WvH-nJ-Hlh"/>
+                            <constraint firstAttribute="trailing" secondItem="xYi-Hn-Awp" secondAttribute="trailing" constant="10" id="b6n-Gc-0h3"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="63I-f9-ImO" secondAttribute="bottom" constant="10" id="dpb-9N-eeF"/>
+                            <constraint firstItem="63I-f9-ImO" firstAttribute="top" secondItem="6lW-TU-Y8G" secondAttribute="bottom" constant="15" id="eH0-tk-yUf"/>
+                            <constraint firstItem="63I-f9-ImO" firstAttribute="trailing" secondItem="xYi-Hn-Awp" secondAttribute="trailing" id="hwC-Xz-MlY"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="uLa-Rj-wfx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cYv-iU-Fag"/>
+                <constraint firstAttribute="bottom" secondItem="uLa-Rj-wfx" secondAttribute="bottom" id="eeS-g2-iTC"/>
+                <constraint firstAttribute="trailing" secondItem="uLa-Rj-wfx" secondAttribute="trailing" id="vnW-PQ-l4F"/>
+                <constraint firstItem="uLa-Rj-wfx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="wtV-ho-RgM"/>
+            </constraints>
+            <size key="customSize" width="403" height="196"/>
+            <connections>
+                <outlet property="duedateLabel" destination="yOQ-ic-Alv" id="qk0-as-lU6"/>
+                <outlet property="stackView" destination="63I-f9-ImO" id="aji-T2-Wxa"/>
+                <outlet property="switchButton" destination="xYi-Hn-Awp" id="Apc-vp-g9x"/>
+                <outlet property="timeTextField" destination="iUe-ap-ZsA" id="D7a-Ic-ZPL"/>
+            </connections>
+            <point key="canvasLocation" x="388.54961832061065" y="38.732394366197184"/>
+        </collectionViewCell>
+    </objects>
+</document>

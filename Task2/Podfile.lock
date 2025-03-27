@@ -1,0 +1,76 @@
+PODS:
+  - IBAnimatable (6.1.0)
+  - IQKeyboardManagerSwift (6.5.15)
+  - Kingfisher (7.12.0)
+  - NVActivityIndicatorView/Base (5.2.0)
+  - NVActivityIndicatorView/Extended (5.2.0):
+    - NVActivityIndicatorView/Base
+  - ObjectMapper (4.4.2)
+  - "ObjectMapper+Realm (1.2)":
+    - ObjectMapper
+    - RealmSwift
+  - ObjectMapperAdditions/Core (13.1.0):
+    - ObjectMapper
+    - RoutableLogger (>= 12.0)
+  - ObjectMapperAdditions/Realm (13.1.0):
+    - ObjectMapper
+    - ObjectMapperAdditions/Core
+    - RealmSwift
+    - RoutableLogger (>= 12.0)
+  - QuickLayout (3.0.0)
+  - Realm (10.52.2):
+    - Realm/Headers (= 10.52.2)
+  - Realm/Headers (10.52.2)
+  - RealmSwift (10.52.2):
+    - Realm (= 10.52.2)
+  - RoutableLogger (12.4.0)
+  - SwiftDate (7.0.0)
+  - SwiftEntryKit (1.2.7):
+    - QuickLayout (= 3.0.0)
+
+DEPENDENCIES:
+  - IBAnimatable
+  - IQKeyboardManagerSwift (= 6.5.15)
+  - Kingfisher (~> 7.0)
+  - NVActivityIndicatorView/Extended
+  - ObjectMapper
+  - "ObjectMapper+Realm"
+  - ObjectMapperAdditions/Realm
+  - RealmSwift (= 10.52.2)
+  - SwiftDate
+  - SwiftEntryKit (~> 1.2.0)
+
+SPEC REPOS:
+  trunk:
+    - IBAnimatable
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - NVActivityIndicatorView
+    - ObjectMapper
+    - "ObjectMapper+Realm"
+    - ObjectMapperAdditions
+    - QuickLayout
+    - Realm
+    - RealmSwift
+    - RoutableLogger
+    - SwiftDate
+    - SwiftEntryKit
+
+SPEC CHECKSUMS:
+  IBAnimatable: 99dddd4c0625884a301ba3ecbc1615f8a390368e
+  IQKeyboardManagerSwift: 79fab21f451441935788dc5d80ded21c32685904
+  Kingfisher: 53a10ea35051a436b5fb626ca2dd8f3144d755e9
+  NVActivityIndicatorView: fe52a6a68664c2df8991d7d9e3d86d8d19453c53
+  ObjectMapper: e6e4d91ff7f2861df7aecc536c92d8363f4c9677
+  "ObjectMapper+Realm": 0f8d0ac5b0e87ba63d2d0bea76a111b4eae98b9a
+  ObjectMapperAdditions: c8945119ecd970f6ea450aedf4db7a0b6953d916
+  QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
+  Realm: e44eb7d20fe469fe1179894fd356727b8fbe61c2
+  RealmSwift: 7aacbd3101158f7d54c930bcfcfaafadbd376ffc
+  RoutableLogger: 5c0d14daf01b023d1506e5a426b53418daac3f8b
+  SwiftDate: bbc26e26fc8c0c33fbee8c140c5e8a68293a148a
+  SwiftEntryKit: 537c92699d6034efb1ef9c32b11e0b37c97aa589
+
+PODFILE CHECKSUM: c8315909b36ab49ee08d8416e3cfad186c8d1abe
+
+COCOAPODS: 1.15.2

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CustomLogsCollectionViewCell" customModule="Task2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="352" height="126"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="352" height="126"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S2H-4y-4OD" customClass="AnimatableView" customModule="IBAnimatable">
+                        <rect key="frame" x="10" y="10" width="332" height="106"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEX-dl-zFa">
+                                <rect key="frame" x="10" y="10" width="312" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" systemColor="tintColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nde-nT-D0M">
+                                <rect key="frame" x="10" y="28" width="312" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" systemColor="underPageBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PEX-dl-zFa" firstAttribute="centerX" secondItem="S2H-4y-4OD" secondAttribute="centerX" id="2ws-9r-tY5"/>
+                            <constraint firstItem="Nde-nT-D0M" firstAttribute="top" secondItem="PEX-dl-zFa" secondAttribute="bottom" id="3LO-2f-OVu"/>
+                            <constraint firstItem="PEX-dl-zFa" firstAttribute="top" secondItem="S2H-4y-4OD" secondAttribute="top" constant="10" id="U6m-wI-6Xh"/>
+                            <constraint firstItem="PEX-dl-zFa" firstAttribute="leading" secondItem="S2H-4y-4OD" secondAttribute="leading" constant="10" id="Vbf-tF-RwQ"/>
+                            <constraint firstItem="Nde-nT-D0M" firstAttribute="leading" secondItem="PEX-dl-zFa" secondAttribute="leading" id="s0B-jA-KWW"/>
+                            <constraint firstItem="Nde-nT-D0M" firstAttribute="centerX" secondItem="PEX-dl-zFa" secondAttribute="centerX" id="yra-Ym-5i9"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Nde-nT-D0M" secondAttribute="bottom" id="zPk-ae-wwo"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" systemColor="systemGray2Color"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="string" keyPath="_borderSides" value="top"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="S2H-4y-4OD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="1WE-r4-wWY"/>
+                <constraint firstAttribute="bottom" secondItem="S2H-4y-4OD" secondAttribute="bottom" constant="10" id="3f5-eM-h15"/>
+                <constraint firstAttribute="trailing" secondItem="S2H-4y-4OD" secondAttribute="trailing" constant="10" id="Sev-9K-OKh"/>
+                <constraint firstItem="S2H-4y-4OD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="gGU-K4-As0"/>
+            </constraints>
+            <size key="customSize" width="352" height="126"/>
+            <point key="canvasLocation" x="369.46564885496184" y="46.478873239436624"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="underPageBackgroundColor">
+            <color red="0.70980392156862748" green="0.71764705882352942" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
