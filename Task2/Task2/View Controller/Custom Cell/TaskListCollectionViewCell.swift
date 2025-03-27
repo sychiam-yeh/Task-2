@@ -14,7 +14,6 @@ enum MenuList: String, CaseIterable {
 }
 
 protocol TaskListCellDelegate: AnyObject {
-    func didTapDateButton(at indexPath: IndexPath)
     func didTapCompletedButton(at indexPath: IndexPath)
 }
 
@@ -38,6 +37,8 @@ class TaskListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var bellImageView: UIImageView!
+    @IBOutlet weak var circleImageView: UIImageView!
+    @IBOutlet weak var lineView: UIView!
     
     @IBAction func onCompleteButtonTapped(_ sender: Any) {
         self.delegate?.didTapCompletedButton(at: self.indexPath)
@@ -47,11 +48,6 @@ class TaskListCollectionViewCell: UICollectionViewCell {
         self.setupUIMenu()
     }
     
-    @IBAction func onDateButtonTapped(_ sender: Any) {
-        self.delegate?.didTapDateButton(at: self.indexPath)
-    }
-   
-    
     /* =================================================================
      *                   MARK: - Class Function
      * ================================================================== */
@@ -59,17 +55,31 @@ class TaskListCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         self.bellImageView.isHidden = true
+        self.lineView.isHidden = true
     }
     
     func configure(list: TaskDO, indexPath: IndexPath) {
         self.indexPath = indexPath
-        self.titleLabel.text = list.title
+        self.titleLabel.text = list.taskName
         self.descLabel.text = list.titleDescription
-        self.dateLabel.text = "\(list.deadlineDate) \(list.deadlineTime)"
+        self.dateLabel.text = "Duedate: \(list.deadlineDate) \(list.deadlineTime)"
+        if list.deadlineDate.isEmpty {
+            self.dateLabel.text = "Duedate: not set"
+        }
         
         self.bellImageView.isHidden = true
         if list.isReminder {
             self.bellImageView.isHidden = false
+        }
+        if list.isCompleted {
+            self.circleImageView.image = UIImage(systemName: "circle.fill")
+            self.circleImageView.tintColor = .green
+            self.lineView.isHidden = false
+        }
+        else {
+            self.circleImageView.image = UIImage(systemName: "circle")
+            self.circleImageView.tintColor = .systemBlue
+            self.lineView.isHidden = true
         }
     }
     

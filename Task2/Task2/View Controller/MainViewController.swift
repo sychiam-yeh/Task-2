@@ -9,6 +9,7 @@ import UIKit
 import Realm
 import RealmSwift
 import EventKit
+import IBAnimatable
 
 class MainViewController: UIViewController {
 
@@ -28,11 +29,18 @@ class MainViewController: UIViewController {
         }
     }
     
+    fileprivate var buttons: [UIButton] = []
+    fileprivate var selectedGroupType = String()
+    
     /* =================================================================
      *                   MARK: - Outlet Initialization
      * ================================================================== */
     @IBOutlet weak var collectionview: UICollectionView!
-    
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var allButton: AnimatableButton!
+    @IBOutlet weak var workButton: AnimatableButton!
+    @IBOutlet weak var errandsButton: AnimatableButton!
+    @IBOutlet weak var personalButton: AnimatableButton!
     
     /* =================================================================
      *                   MARK: - Class Function
@@ -40,16 +48,44 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.buttons = [self.allButton, self.workButton, self.errandsButton, self.personalButton]
+       
+        for button in self.buttons {
+            button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+            
+            self.allButton.backgroundColor = .purple
+        }
+        
         self.navigationItem.title = "Dashboard"
         self.navigationItem.rightBarButtonItems =  [self.setupNewTaskBarButton()]
-        
+        self.searchBar.delegate = self
         self.setupCollectionView()
         self.getTaskArray()
     }
     
+    @objc func buttonTapped(_ sender: UIButton) {
+        for button in self.buttons {
+            if button == sender {
+                if let text = button.titleLabel?.text {
+                    self.selectedGroupType = text
+                    self.reloadData(taskObject: TaskDO())
+                }
+                button.backgroundColor = .purple
+            }
+            else {
+                button.backgroundColor = .systemGray3
+            }
+        }
+    }
+    
     fileprivate func getTaskArray() {
         if self.taskListRealm.count > 0 {
-            self.taskArray = self.taskListRealm.filter({$0.isDeleted == false && $0.isCompleted == false}).sorted(by: { $0.creationDate > $1.creationDate })
+            if self.selectedGroupType.lowercased() == "all" {
+                self.taskArray = self.taskListRealm.sorted(by: { $0.creationDate > $1.creationDate })
+            }
+            else {
+                self.taskArray = self.taskListRealm.filter({$0.category == self.selectedGroupType}).sorted(by: { $0.creationDate > $1.creationDate })
+            }
         }
         else {
             self.taskArray.removeAll()
@@ -77,10 +113,10 @@ class MainViewController: UIViewController {
             
             if let date = dateFormatter.date(from: datetime) {
                 if let reminderIdentifier = UserDefaults.standard.string(forKey: "lastReminderIdentifier\(taskObject.uuid)") {
-                    self.updateReminder(reminderIdentifier: reminderIdentifier, newTitle: taskObject.title, newDueDate: date)
+                    self.updateReminder(reminderIdentifier: reminderIdentifier, newTitle: taskObject.taskName, newDueDate: date)
                 }
                 else {
-                    self.createReminder(title: taskObject.title, dueDate: date, uuid: taskObject.uuid)
+                    self.createReminder(title: taskObject.taskName, dueDate: date, uuid: taskObject.uuid)
                 }
             }
         }
@@ -104,7 +140,7 @@ class MainViewController: UIViewController {
                 self.present(viewController, animated: true)
             }
         case .delete: 
-            let title = self.taskArray[indexPath.row].title
+            let title = self.taskArray[indexPath.row].taskName
             
             try! self.realm.write {
                 self.realm.delete(self.taskArray[indexPath.row])
@@ -218,20 +254,53 @@ extension MainViewController {
 }
 
 extension MainViewController: TaskListCellDelegate {
-    func didTapDateButton(at indexPath: IndexPath) {
-        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "customDateViewController") as? CustomDateViewController {
-            viewController.modalPresentationStyle = .formSheet
-            self.present(viewController, animated: true, completion: nil)
+    func didTapCompletedButton(at indexPath: IndexPath) {
+        let modifierTask = self.taskArray[indexPath.row]
+       
+        if modifierTask.isCompleted {
+            try! self.realm.write {
+                modifierTask.isCompleted = false
+                modifierTask.completedDate = ""
+                self.realm.add(modifierTask, update: .modified)
+            }
+            MessageHelper.showTopMessage(type: .toast, theme: .success, message: "Task reopen")
+        }
+        else {
+            try! self.realm.write {
+                modifierTask.isCompleted = true
+                modifierTask.completedDate = Date().toFormat("dd/MM/yyyy hh:mm:ss")
+                self.realm.add(modifierTask, update: .modified)
+            }
+            MessageHelper.showTopMessage(type: .toast, theme: .success, message: "Task completed")
+        }
+        self.reloadData(taskObject: modifierTask)
+    }
+}
+
+/* =================================================================
+ *                   MARK: - UISearchBarDelegate
+ * ================================================================== */
+extension MainViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count > 1 {
+            if self.taskListRealm.count > 0 {
+                if self.selectedGroupType.lowercased() == "all" {
+                    self.taskArray = self.taskListRealm.filter({$0.taskName.lowercased().contains(searchText.lowercased())})
+                }
+                else {
+                    self.taskArray = self.taskListRealm.filter({$0.taskName.lowercased().contains(searchText.lowercased()) && $0.category.lowercased() == self.selectedGroupType.lowercased()})
+                }
+               
+                self.createDataSource()
+                self.applySnapshot()
+            }
+        }
+        else if searchText.count == 0 {
+            self.reloadData(taskObject: TaskDO())
         }
     }
     
-    func didTapCompletedButton(at indexPath: IndexPath) {
-        try! self.realm.write {
-            let modifierTask = self.taskArray[indexPath.row]
-            modifierTask.isCompleted = true
-            self.realm.add(modifierTask, update: .modified)
-        }
-        MessageHelper.showTopMessage(type: .toast, theme: .success, message: "TASK COMPLETED")
-//        self.reloadData()
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.reloadData(taskObject: TaskDO())
     }
 }

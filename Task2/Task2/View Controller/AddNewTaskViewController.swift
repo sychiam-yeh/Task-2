@@ -19,6 +19,17 @@ enum SectionLayout: CaseIterable {
     case title
     case description
     case deadline
+    case group
+    case logs
+    
+    static let addArray = [title, description ,deadline, group]
+    static let updateArray = [title, description , deadline, group, logs]
+}
+
+enum GroupType: String, CaseIterable {
+    case work = "Work"
+    case personal = "Personal"
+    case errands = "Errands"
 }
 
 enum ActionType {
@@ -38,9 +49,6 @@ enum TaskField: CaseIterable {
             return "Description"
         }
     }
-    
-    static let titleArray = [taskName]
-    static let descArray = [descName]
 }
 
 class AddNewTaskViewController: UIViewController {
@@ -48,7 +56,7 @@ class AddNewTaskViewController: UIViewController {
     /* =================================================================
      *                   MARK: - Local Initialization
      * ================================================================== */
-    fileprivate var sectionLayout = SectionLayout.allCases
+    fileprivate var sectionLayout = SectionLayout.addArray
     fileprivate var dataSource: UICollectionViewDiffableDataSource<AnyHashable, AnyHashable>?
     
     var onCompletionHandler: ((TaskDO) -> Void)?
@@ -71,7 +79,7 @@ class AddNewTaskViewController: UIViewController {
     }
     
     @IBAction func onSaveTapped(_ sender: Any) {
-        if !self.taskObject.title.isEmpty || self.taskObject.title != "" {
+        if !self.taskObject.taskName.isEmpty || self.taskObject.taskName != "" {
            
             try! self.realm.write {
                 switch self.action {
@@ -96,7 +104,18 @@ class AddNewTaskViewController: UIViewController {
      * ================================================================== */
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
+        self.saveButton.isHidden = false
+        
+        switch self.action {
+        case .update:
+            self.sectionLayout =  SectionLayout.updateArray
+            
+            if self.passedTaskObject.isCompleted {
+                self.saveButton.isHidden = true
+            }
+        default: break
+        }
         self.setupCollectionView()
     }
 }
@@ -115,6 +134,8 @@ extension AddNewTaskViewController {
     fileprivate func registerAllNecessaryCells() {
         self.collectionview.register(UINib(nibName: "NewTaskCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: NewTaskCollectionViewCell.reuseIdentifier)
         self.collectionview.register(UINib(nibName: "TaskDateCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: TaskDateCollectionViewCell.reuseIdentifier)
+        self.collectionview.register(UINib(nibName: "CustomLogsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CustomLogsCollectionViewCell.reuseIdentifier)
+        self.collectionview.register(UINib(nibName: "CustomCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CustomCollectionViewCell.reuseIdentifier)
     }
  
     fileprivate func createCompositionalLayout() -> UICollectionViewLayout {
@@ -128,7 +149,7 @@ extension AddNewTaskViewController {
         let sectionType = self.sectionLayout[sectionIndex]
         switch sectionType {
             
-        case SectionLayout.title, SectionLayout.description :
+        case SectionLayout.title, SectionLayout.description:
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             
@@ -148,6 +169,27 @@ extension AddNewTaskViewController {
             let section = NSCollectionLayoutSection(group: group)
             
             return section
+        case SectionLayout.logs:
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(500))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            
+            let section = NSCollectionLayoutSection(group: group)
+            
+            return section
+        case SectionLayout.group:
+            let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .fractionalHeight(1))
+            let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
+           
+            let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .fractionalHeight(0.05))
+            let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
+            
+            let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
+            layoutSection.orthogonalScrollingBehavior = .continuous
+            
+            return layoutSection
         }
     }
     
@@ -178,6 +220,21 @@ extension AddNewTaskViewController {
                
                 
                 return cell
+            case SectionLayout.logs:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomLogsCollectionViewCell.reuseIdentifier, for: indexPath) as? CustomLogsCollectionViewCell else {
+                    fatalError("Couldn't dequeue collection view cell")
+                }
+                cell.configure(task: self.passedTaskObject)
+                return cell
+            case SectionLayout.group:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.reuseIdentifier, for: indexPath) as? CustomCollectionViewCell else {
+                    fatalError("Couldn't dequeue collection view cell")
+                }
+                if let value = item as? GroupType {
+                    cell.configure(type: value, action: self.action, task: self.passedTaskObject)
+                }
+                cell.addNewTaskVC = self
+                return cell
             }
         }
     }
@@ -194,6 +251,10 @@ extension AddNewTaskViewController {
                 snapshot.appendItems([TaskField.descName], toSection: eachSection)
             case SectionLayout.deadline:
                 snapshot.appendItems([3], toSection: eachSection)
+            case SectionLayout.group:
+                snapshot.appendItems(GroupType.allCases, toSection: eachSection)
+            case SectionLayout.logs:
+                snapshot.appendItems([5], toSection: eachSection)
             }
         }
         self.dataSource?.apply(snapshot, animatingDifferences: true)

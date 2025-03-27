@@ -12,6 +12,8 @@
 		D3547B7F2D954B0B00D3ECC2 /* TaskDateCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3547B7D2D954B0B00D3ECC2 /* TaskDateCollectionViewCell.xib */; };
 		D3547B822D954CE500D3ECC2 /* CustomLogsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3547B802D954CE500D3ECC2 /* CustomLogsCollectionViewCell.swift */; };
 		D3547B832D954CE500D3ECC2 /* CustomLogsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3547B812D954CE500D3ECC2 /* CustomLogsCollectionViewCell.xib */; };
+		D3AE101A2D95B7BC00EF878A /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3AE10182D95B7BC00EF878A /* CustomCollectionViewCell.xib */; };
+		D3AE101B2D95B7BC00EF878A /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AE10192D95B7BC00EF878A /* CustomCollectionViewCell.swift */; };
 		D3BD91AD2D94456000891F0B /* MessageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BD91AC2D94456000891F0B /* MessageHelper.swift */; };
 		D3BD91AF2D94463300891F0B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BD91AE2D94463300891F0B /* Constant.swift */; };
 		D3BD91B22D944B7300891F0B /* TaskListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BD91B02D944B7300891F0B /* TaskListCollectionViewCell.swift */; };
@@ -26,7 +28,6 @@
 		D3CC74EE2D93F9DE000CD4D7 /* NewTaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC74EC2D93F9DE000CD4D7 /* NewTaskCollectionViewCell.swift */; };
 		D3CC74EF2D93F9DE000CD4D7 /* NewTaskCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3CC74ED2D93F9DE000CD4D7 /* NewTaskCollectionViewCell.xib */; };
 		D3CC74F12D9409B5000CD4D7 /* TaskDO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC74F02D9409B5000CD4D7 /* TaskDO.swift */; };
-		D3EA187E2D9571030012CA9A /* CustomDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EA187D2D9571030012CA9A /* CustomDateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		D3547B7D2D954B0B00D3ECC2 /* TaskDateCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskDateCollectionViewCell.xib; sourceTree = "<group>"; };
 		D3547B802D954CE500D3ECC2 /* CustomLogsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLogsCollectionViewCell.swift; sourceTree = "<group>"; };
 		D3547B812D954CE500D3ECC2 /* CustomLogsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomLogsCollectionViewCell.xib; sourceTree = "<group>"; };
+		D3AE10182D95B7BC00EF878A /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
+		D3AE10192D95B7BC00EF878A /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		D3BD91AC2D94456000891F0B /* MessageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHelper.swift; sourceTree = "<group>"; };
 		D3BD91AE2D94463300891F0B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		D3BD91B02D944B7300891F0B /* TaskListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -53,7 +56,6 @@
 		D3CC74EC2D93F9DE000CD4D7 /* NewTaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskCollectionViewCell.swift; sourceTree = "<group>"; };
 		D3CC74ED2D93F9DE000CD4D7 /* NewTaskCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTaskCollectionViewCell.xib; sourceTree = "<group>"; };
 		D3CC74F02D9409B5000CD4D7 /* TaskDO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDO.swift; sourceTree = "<group>"; };
-		D3EA187D2D9571030012CA9A /* CustomDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +127,6 @@
 				D3CC74D72D93F16E000CD4D7 /* Main.storyboard */,
 				D3CC74D52D93F16E000CD4D7 /* MainViewController.swift */,
 				D3CC74E92D93F304000CD4D7 /* AddNewTaskViewController.swift */,
-				D3EA187D2D9571030012CA9A /* CustomDateViewController.swift */,
 				D3CC74EB2D93F9C2000CD4D7 /* Custom Cell */,
 			);
 			path = "View Controller";
@@ -158,6 +159,8 @@
 		D3CC74EB2D93F9C2000CD4D7 /* Custom Cell */ = {
 			isa = PBXGroup;
 			children = (
+				D3AE10192D95B7BC00EF878A /* CustomCollectionViewCell.swift */,
+				D3AE10182D95B7BC00EF878A /* CustomCollectionViewCell.xib */,
 				D3CC74EC2D93F9DE000CD4D7 /* NewTaskCollectionViewCell.swift */,
 				D3CC74ED2D93F9DE000CD4D7 /* NewTaskCollectionViewCell.xib */,
 				D3BD91B02D944B7300891F0B /* TaskListCollectionViewCell.swift */,
@@ -237,6 +240,7 @@
 				D3CC74D92D93F16E000CD4D7 /* Main.storyboard in Resources */,
 				D3BD91B32D944B7300891F0B /* TaskListCollectionViewCell.xib in Resources */,
 				D3547B7F2D954B0B00D3ECC2 /* TaskDateCollectionViewCell.xib in Resources */,
+				D3AE101A2D95B7BC00EF878A /* CustomCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,13 +294,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3BD91AD2D94456000891F0B /* MessageHelper.swift in Sources */,
-				D3EA187E2D9571030012CA9A /* CustomDateViewController.swift in Sources */,
 				D3CC74EE2D93F9DE000CD4D7 /* NewTaskCollectionViewCell.swift in Sources */,
 				D3CC74D62D93F16E000CD4D7 /* MainViewController.swift in Sources */,
 				D3547B822D954CE500D3ECC2 /* CustomLogsCollectionViewCell.swift in Sources */,
 				D3BD91AF2D94463300891F0B /* Constant.swift in Sources */,
 				D3CC74D22D93F16E000CD4D7 /* AppDelegate.swift in Sources */,
 				D3CC74EA2D93F304000CD4D7 /* AddNewTaskViewController.swift in Sources */,
+				D3AE101B2D95B7BC00EF878A /* CustomCollectionViewCell.swift in Sources */,
 				D3547B7E2D954B0B00D3ECC2 /* TaskDateCollectionViewCell.swift in Sources */,
 				D3CC74D42D93F16E000CD4D7 /* SceneDelegate.swift in Sources */,
 				D3BD91B22D944B7300891F0B /* TaskListCollectionViewCell.swift in Sources */,

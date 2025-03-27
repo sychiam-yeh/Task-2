@@ -32,8 +32,8 @@ class NewTaskCollectionViewCell: UICollectionViewCell {
         switch action {
         case .update:
             if value == TaskField.taskName {
-                self.textField.text = task.title
-                self.addNewTaskVC.taskObject.title = task.title
+                self.textField.text = task.taskName
+                self.addNewTaskVC.taskObject.taskName = task.taskName
             }
             else if value == TaskField.descName {
                 self.textField.text = task.titleDescription
@@ -50,7 +50,7 @@ extension NewTaskCollectionViewCell: UITextFieldDelegate {
         if let text = textField.text {
             switch textField.tag {
             case 0:
-                self.addNewTaskVC.taskObject.title = text
+                self.addNewTaskVC.taskObject.taskName = text
             case 1:
                 self.addNewTaskVC.taskObject.titleDescription = text
             default:

@@ -12,7 +12,7 @@ import ObjectMapper_Realm
 
 class TaskDO: Object, Mappable {
     @objc dynamic var uuid = UUID().uuidString
-    @objc dynamic var title = String()
+    @objc dynamic var taskName = String()
     @objc dynamic var titleDescription = String()
     @objc dynamic var deadlineDate = String()
     @objc dynamic var deadlineTime = String()
@@ -33,8 +33,8 @@ class TaskDO: Object, Mappable {
     
     func mapping(map: ObjectMapper.Map) {
         uuid <- map["uuid"]
-        title <- map["taskName"]
-        titleDescription <- map["description"]
+        taskName <- map["taskName"]
+        titleDescription <- map["titleDescription"]
         deadlineDate <- map["deadlineDate"]
         deadlineTime <- map["deadlineTime"]
         isCompleted <- map["isCompleted"]
