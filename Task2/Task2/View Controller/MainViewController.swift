@@ -48,19 +48,23 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = "Dashboard"
+        self.navigationItem.rightBarButtonItems =  [self.setupNewTaskBarButton()]
+        self.searchBar.delegate = self
+        self.setupGroupButton()
+        self.setupCollectionView()
+        self.getTaskArray()
+    }
+    
+    fileprivate func setupGroupButton() {
         self.buttons = [self.allButton, self.workButton, self.errandsButton, self.personalButton]
        
         for button in self.buttons {
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
             
             self.allButton.backgroundColor = .purple
+            self.selectedGroupType = "all"
         }
-        
-        self.navigationItem.title = "Dashboard"
-        self.navigationItem.rightBarButtonItems =  [self.setupNewTaskBarButton()]
-        self.searchBar.delegate = self
-        self.setupCollectionView()
-        self.getTaskArray()
     }
     
     @objc func buttonTapped(_ sender: UIButton) {
